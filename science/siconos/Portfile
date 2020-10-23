@@ -47,7 +47,7 @@ depends_lib-append \
 #compiler.fortran_fallback \
 #	gfortran-mp-10
 
-configure.env-append    FC=/opt/local/bin/gfortran-mp-10		
+#configure.env-append    FC=/opt/local/bin/gfortran-mp-10		
 configure.args-append \
                     ../${distname}/ \
 		    -DBLA_VENDOR=Apple \

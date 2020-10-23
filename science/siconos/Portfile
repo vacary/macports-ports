@@ -7,10 +7,6 @@ PortGroup           cmake 1.1
 # Require C++11
 compiler.cxx_standard 2011
 
-# some older Clang say they support C++11 when they don't 
-# this is the same blacklisting as for jsoncpp, on which vtk depends. 
-compiler.blacklist-append {clang < 900} 
-
 name                siconos
 version             4.3.0
 revision            1
@@ -20,7 +16,7 @@ license             Apache
 
 set branch          [join [lrange [split ${version} .] 0 1] .]
 
-maintainers         {vacary @vacary} {vacary.acary@gmail.com} openmaintainer
+maintainers         {vacary @vacary} {gmail.com:vacary.acary} openmaintainer
 
 description         Siconos
 

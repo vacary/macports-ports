@@ -33,20 +33,27 @@ checksums           rmd160  283266cfeadc51c8bdd0abca2eef5cc4ec9b6e71 \
 
 
 depends_lib-append \
+    port:gcc10 \
     port:boost \
     port:python38 \
-    port:gcc9 \
+    port:py-numpy \
+    port:py-packaging \
+    port:SuiteSparse \
     port:swig
 
+#configure.compiler \
+#        macports-gcc
 
+#compiler.fortran_fallback \
+#	gfortran-mp-10
+
+configure.env-append    FC=/opt/local/bin/gfortran-mp-10		
 configure.args-append \
                     ../${distname}/ \
+		    -DBLA_VENDOR=Apple \
 		    -DCMAKE_CXX_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
 		    -DCMAKE_C_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
-		    -DCMAKE_Fortran_COMPILER=gfortran-mp-9 \
                     -LH 
-
-
 
 # Supported pythons
 set python_versions {36 37 38}

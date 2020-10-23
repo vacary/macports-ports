@@ -1,0 +1,111 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           cmake 1.1
+
+
+# Require C++11
+compiler.cxx_standard 2011
+
+name                siconos
+version             4.3.1.a
+revision            1
+categories          science
+platforms           darwin
+license             Apache-2.0
+
+set branch          [join [lrange [split ${version} .] 0 1] .]
+
+maintainers         {vacary @vacary} {gmail.com:vacary.acary} openmaintainer
+
+description         Siconos
+
+long_description    Siconos. Simulation, Analysis and Control of Nonsmooth dynamical systems
+
+homepage            http://siconos.gforge.inria.fr
+master_sites        https://github.com/vacary/siconos/archive/
+
+distname            ${version}
+
+checksums           rmd160  0bbd4e6c0e51782928cc0e93dd4aec708acfa245 \
+                     sha256  440391a0c11d301031876a6fde0d70b4101a6337f452cfef6ada0dccb726965a \
+                     size    23732911
+
+use_parallel_build  yes
+
+depends_lib-append \
+    port:gcc9 \
+    port:boost \
+    port:python38 \
+    port:py-numpy \
+    port:py-packaging \
+    port:SuiteSparse \
+    port:swig \
+    port:swig-python \
+    port:hdf5
+
+configure.fc  ${prefix}/bin/gfortran-mp-10
+
+#configure.compiler \
+#        macports-gcc
+
+#compiler.fortran_fallback \
+#	gfortran-mp-10
+
+#configure.env-append    FC=/opt/local/bin/gfortran-mp-10
+
+configure.args-append \
+    ../${distname}/ \
+    -DBLA_VENDOR=Apple 
+#     -LH 
+#    -DCMAKE_Fortran_COMPILER=/opt/local/bin/gfortran-mp-9 \
+
+variant hdf5{
+    depends_lib-append  port:hdf5
+# #   configure.args-delete 
+# #                 -DWITH:BOOL=OFF
+     configure.args-append \
+                  -DWITH_HDF5:BOOL=ON }
+# variant bullet
+
+# variant fclib
+
+
+
+# # Supported pythons
+# set python_versions {36 37 38}
+
+# foreach pyver ${python_versions} {
+#     # Conflicting python versions
+#     set other_python_versions {}
+#     foreach other_pyver ${python_versions} {
+#         if {${other_pyver} ne ${pyver}} {
+#             if {${other_pyver} ni ${other_python_versions}} {
+#                 lappend other_python_versions python${other_pyver}
+#                 }
+#             }
+#     }
+
+#     # Get python branch
+#     set python_branch  "[string range ${pyver} 0 end-1].[string index ${pyver} end]"
+
+#     variant python${pyver} conflicts {*}${other_python_versions} description "Add Python ${python_branch} support" "
+#             depends_lib-append  port:python${pyver}
+#             configure.args-delete \
+#                 -DVTK_WRAP_PYTHON:BOOL=OFF
+
+#             configure.args-append \
+#                 -DVTK_WRAP_PYTHON:BOOL=ON \
+#                 -DPYTHON_EXECUTABLE:STRING=${prefix}/bin/python${python_branch} \
+#                 -DPYTHON_INCLUDE_DIR=${frameworks_dir}/Python.framework/Versions/${python_branch}/Headers/ \
+#                 -DPYTHON_LIBRARY=${frameworks_dir}/Python.framework/Versions/${python_branch}/lib/libpython${python_branch}.dylib \
+#                 -DVTK_INSTALL_PYTHON_MODULES_DIR=${frameworks_dir}/Python.framework/Versions/${python_branch}/lib/python${python_branch}/site-packages \
+
+#     "
+# }
+
+
+
+livecheck.type      regex
+livecheck.url       http://siconos.gforge.inria.fr
+livecheck.regex     {[sS][iconos]-(\d+(?:\.\d+)*)\.[tar.gz]}

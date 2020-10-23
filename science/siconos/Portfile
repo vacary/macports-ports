@@ -42,7 +42,8 @@ depends_lib-append \
 configure.args-append \
                     ../${distname}/ \
 		    -DCMAKE_CXX_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
-																											    -DCMAKE_C_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
+		    -DCMAKE_C_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
+		    -DCMAKE_Fortran_COMPILER=gfortran-mp-9 \
                     -LH 
 
 

@@ -39,7 +39,8 @@ depends_lib-append \
     port:py-numpy \
     port:py-packaging \
     port:SuiteSparse \
-    port:swig
+    port:swig \
+    port:swig-python
 
 #configure.compiler \
 #        macports-gcc

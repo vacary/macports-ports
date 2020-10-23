@@ -35,16 +35,15 @@ checksums           rmd160  283266cfeadc51c8bdd0abca2eef5cc4ec9b6e71 \
 depends_lib-append \
     port:boost \
     port:python38 \
-    port:gcc9 
+    port:gcc9 \
+    port:swig
 
-
-
-configure.pre_args-delete \
-                    -DCMAKE_BUILD_WITH_INSTALL_RPATH:BOOL=ON
 
 configure.args-append \
                     ../${distname}/ \
-                    -DBUILD_SHARED_LIBS=ON 
+		    -DCMAKE_CXX_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
+																											    -DCMAKE_C_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
+                    -LH 
 
 
 

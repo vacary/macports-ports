@@ -53,11 +53,9 @@ depends_lib-append \
 configure.args-append \
     ../${distname}/ \
     -DCMAKE_Fortran_COMPILER=/opt/local/bin/gfortran-mp-9 \
-    -DBLA_VENDOR=Apple
-
-# \
-#     -DCMAKE_CXX_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
-#     -DCMAKE_C_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
+    -DBLA_VENDOR=Apple \
+    -DCMAKE_CXX_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ \
+    -DCMAKE_C_FLAGS=-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/Headers/ 
 #     -LH 
 
 # Supported pythons
